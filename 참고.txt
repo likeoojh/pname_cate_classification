@@ -18,9 +18,7 @@ $ tail -n 7117 pname.cate1.unique.refined.tok.shuf.tsv > pname.cate1.unique.refi
 $ wc -l ./pname.cate1.unique.refined.tok.shuf.*
 
 4. 모델링
-(rnn, cnn 학습)$ python train.py --model_fn ./model_results/review.pth --train_fn ./data/pname.cate1.unique.refined.tok.shuf.train.tsv  --word_vec_size 256 --rnn --hidden_size 512 --n_layers 4 --cnn --window_sizes 3 4 5 6 7 8 --n_filters 128 128 128 128 128 128 --gpu_id -1 --batch_size 128 --min_vocab_freq 3 --n_epochs 10 
-_sizes 3 4 5 6 7 8 --n_filters 128 128 128 128 128 128
-
+(rnn, cnn 학습)$ python train.py --model_fn ./model_results/review.pth --train_fn ./data/pname.cate1.unique.refined.tok.shuf.train.tsv  --word_vec_size 256 --rnn --hidden_size 512 --n_layers 4 --cnn --window_sizes 3 4 5 6 7 8 --n_filters 128 128 128 128 128 128 --gpu_id -1 --batch_size 80 --min_vocab_freq 1 --n_epochs 3
 (테스트 샘플 추론)
 $ cut -f2 ./data/pname.cate1.unique.refined.tok.shuf.test.tsv | shuf | head -n 10 | python ./classify.py --model_fn ./model_results/review.pth --gpu_id -1
 $ echo "나이키 에어 맥스" | mecab -O wakati | python ./classify.py --model_fn ./model_results/review.pth
